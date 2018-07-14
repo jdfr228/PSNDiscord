@@ -54,7 +54,7 @@ Modify the PSNDiscord.py script to include the necessary information:
 
 Windows users can simply run the included PSNDiscord.bat file.
 
-First run will require you to login to my.playstation.com.  After logging in once, all future runs of the program should save your login session, and the hideChrome option can be set to True.
+The first run of the script will require you to login to my.playstation.com.  After logging in once, all future runs of the script should save your login session, and the hideChrome option can be set to True.
 
 Exit the script with a keyboard interrupt for now (Ctrl+C).
 
