@@ -85,7 +85,6 @@ async def fetchPage():
 
 	# Fetch page, or if it has already been fetched before, simply refresh
 	if (alreadyFetched):
-		#driver.refresh()
 		driver.find_element_by_tag_name('body').send_keys(Keys.F5)
 		print("Page Refreshing " + time.strftime("%I:%M:%S", time.localtime()))
 		refreshTime = noGameRefreshTime
@@ -96,9 +95,9 @@ async def fetchPage():
 	# Wait for page to load and fetch game info
 	try:
 		gameNameElem = WebDriverWait(driver, loadTime).until(EC.presence_of_element_located((By.CLASS_NAME, 'now-playing__details__line1__name')))	# Name
-		imageElem = WebDriverWait(driver, loadTime).until(EC.presence_of_element_located((By.CLASS_NAME, 'now-playing__thumbnail')))   			# Image
+		imageElem = WebDriverWait(driver, loadTime).until(EC.presence_of_element_located((By.CLASS_NAME, 'now-playing__thumbnail')))   				# Image
 		gameUrlElem = WebDriverWait(driver, loadTime).until(EC.presence_of_element_located((By.CLASS_NAME, 'now-playing__details__store-link')))	# Url
-		consoleElem = WebDriverWait(driver, loadTime).until(EC.presence_of_element_located((By.CLASS_NAME, 'now-playing__details__line1')))		# Console
+		consoleElem = WebDriverWait(driver, loadTime).until(EC.presence_of_element_located((By.CLASS_NAME, 'now-playing__details__line1')))			# Console
 
 		#if (gameNameElem is not None):
 		gameName = gameNameElem.text
@@ -159,13 +158,10 @@ async def updatePresence():
 	global gameName, gameUrl, imageSrc, console, client, clientReady, twitchUrl
 
 	if (clientReady):
-		#applicationId = ""
 		timestampsDict = {"start": int(time.time()) * 1000}
 
 		print("Updating Discord status...")
-		await client.change_presence(activity=discord.Activity(#application_id=applicationId,
-																name=gameName,
-																#details=gameUrl,
+		await client.change_presence(activity=discord.Activity(name=gameName,
 																url=twitchUrl,
 																type=discord.ActivityType.playing,
 																state="In-Game (" + console + ")",
